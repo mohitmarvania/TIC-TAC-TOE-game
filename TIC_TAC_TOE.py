@@ -21,7 +21,6 @@ def displayBoard(board):
 
 # Will take the choice from the player-1.
 def User_input():
-
     select1 = ' '
 
     while select1 not in ['X', 'O']:
@@ -63,17 +62,16 @@ def Space_Check(board, position):
 
 
 # Take position from user
-def User_Position(board):
+def User_Position(board, player):
     position = 0
 
     while position not in [1, 2, 3, 4, 5, 6, 7, 8, 9] or Space_Check(board, position) == False:
-        position = int(input("Choose your position from 1-9 : "))
+        position = int(input(f"{player} Choose your position from 1-9 : "))
     return position
 
 
 # If the board is full.
 def Final_board_check(board):
-
     for i in range(1, 10):
         if Space_Check(board, i):
             return False
@@ -82,7 +80,6 @@ def Final_board_check(board):
 
 # Method that ask if user want to play again
 def Play_again():
-
     count = 0
     while count not in [1, 2]:
         answer = input("Do you want to play again ?? (Y or N) : ")
@@ -119,7 +116,7 @@ while True:
 
         if firstPlayer == "Player - 1":
             displayBoard(Board)
-            Position = User_Position(Board)
+            Position = User_Position(Board, "Player - 1 ")
             Place_maker(Board, Position, Player1_mark)
 
             if win_check(Board, Player1_mark):
@@ -136,7 +133,7 @@ while True:
 
         else:
             displayBoard(Board)
-            Position = User_Position(Board)
+            Position = User_Position(Board, "Player - 2")
             Place_maker(Board, Position, Player2_mark)
 
             if win_check(Board, Player2_mark):
